@@ -83,6 +83,16 @@ if($cvmodule != "") {
 	//<<<<<<<advancedfilter>>>>>>>>>
 	$json = new Zend_Json();
 
+        
+        /*
+        echo "<pre>--post";
+        print_r($_POST);
+        echo "</pre>";
+        
+        echo "<pre>--request";
+        print_r($_REQUEST);
+        echo "</pre>";*/
+        
 	$advft_criteria = $_REQUEST['advft_criteria'];
 	$advft_criteria = $json->decode($advft_criteria);
 
@@ -90,6 +100,15 @@ if($cvmodule != "") {
 	$advft_criteria_groups = $json->decode($advft_criteria_groups);
 	//<<<<<<<advancedfilter>>>>>>>>
 
+        
+         if ($advft_criteria == ""){
+             $advft_criteria = Array();
+          }
+          if ($advft_criteria_groups == ""){
+             $advft_criteria_groups = Array();
+          }
+
+        
 	$moduleHandler = vtws_getModuleHandlerFromName($cvmodule,$current_user);
 	$moduleMeta = $moduleHandler->getMeta();
 	$moduleFields = $moduleMeta->getModuleFields();
